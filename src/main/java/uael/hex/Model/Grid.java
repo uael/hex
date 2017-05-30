@@ -1,4 +1,4 @@
-package Model;
+package uael.hex.Model;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * S3C
  */
 
-public class Grid extends ArrayList<Cell>{
+public class Grid extends ArrayList<Cell> {
 
     private int nbLines;
     private int nbColumns;
@@ -18,21 +18,22 @@ public class Grid extends ArrayList<Cell>{
         this.nbLines = nbLines;
         this.nbColumns = nbColumns;
     }
+
     public void buildGrid() {
         Cell c;
         for (int i = 0; i < nbLines; i++) {
             for (int j = 0; j < nbColumns; j++) {
-                if((i != 0 && j != nbColumns -1) || (i != nbLines -1 && j != 0 )) {
+                if ((i != 0 && j != nbColumns - 1) || (i != nbLines - 1 && j != 0)) {
                     if (i == 0)
-                        c = new Cell(i,j, Color.BLUE,true);
+                        c = new Cell(i, j, Color.BLUE, true);
                     else if (i == nbLines - 1)
-                        c = new Cell(i,j,Color.BLUE,true);
+                        c = new Cell(i, j, Color.BLUE, true);
                     else if (j == 0)
-                        c = new Cell(i,j,Color.RED,true);
+                        c = new Cell(i, j, Color.RED, true);
                     else if (j == nbColumns - 1)
-                        c = new Cell(i,j, Color.RED,true);
+                        c = new Cell(i, j, Color.RED, true);
                     else
-                        c = new Cell(i,j, Color.WHITE,false);
+                        c = new Cell(i, j, Color.WHITE, false);
 
                     add(c);
                 }
@@ -40,17 +41,17 @@ public class Grid extends ArrayList<Cell>{
         }
     }
 
-    public int getNbLines(){
+    public int getNbLines() {
         return nbLines;
     }
 
-    public int getNbColumns(){
+    public int getNbColumns() {
         return nbColumns;
     }
 
     public Cell getCell(int i, int j) {
         Cell cell = null;
-        for (Cell c : this){
+        for (Cell c : this) {
             if (c.getX() == i && c.getY() == j) {
                 cell = c;
             }

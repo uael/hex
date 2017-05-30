@@ -1,7 +1,7 @@
-package TU;
+package uael.hex;
 
-import Model.Cell;
-import Model.Grid;
+import uael.hex.Model.Cell;
+import uael.hex.Model.Grid;
 import org.junit.Test;
 
 import java.awt.*;
@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class GridTest {
 
     // On définit la grid pour les tests
-    Grid gridTest = new Grid(10,10);
+    Grid gridTest = new Grid(10, 10);
 
     // Ce test permet également de tester la méthode getCell
     @Test
@@ -25,13 +25,13 @@ public class GridTest {
         gridTest.buildGrid();
 
         // On récupère les cellules pour tester leur couleurs pour voir si la création de la grid fonctionne
-        Cell c1 = gridTest.getCell(5,5);
+        Cell c1 = gridTest.getCell(5, 5);
         Color couleur1 = c1.getColor();
 
-        Cell c2 = gridTest.getCell(0,3);
+        Cell c2 = gridTest.getCell(0, 3);
         Color couleur2 = c2.getColor();
 
-        Cell c3 = gridTest.getCell(3,0);
+        Cell c3 = gridTest.getCell(3, 0);
         Color couleur3 = c3.getColor();
 
         assertEquals(couleur1, Color.WHITE);
@@ -59,6 +59,6 @@ public class GridTest {
                 passeTest = true;
         }
 
-        assertEquals(passeTest,false);
+        assertEquals(passeTest, false);
     }
 }

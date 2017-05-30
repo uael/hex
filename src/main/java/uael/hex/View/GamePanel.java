@@ -1,7 +1,7 @@
-package View;
+package uael.hex.View;
 
-import Model.Cell;
-import Model.HexModel;
+import uael.hex.Model.Cell;
+import uael.hex.Model.HexModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,16 +13,16 @@ import java.awt.*;
  */
 
 public class GamePanel extends JPanel {
-    private HexModel model;
-    JLabel currentPlayer = new JLabel("Empty");
     public JButton bReturn = new JButton("Retour menu");
+    JLabel currentPlayer = new JLabel("Empty");
+    private HexModel model;
 
-    GamePanel(HexModel model){
+    GamePanel(HexModel model) {
         super();
-        this.model= model;
+        this.model = model;
         currentPlayer.setFont(new Font(currentPlayer.getFont().getName(), Font.PLAIN, 50));
         add(currentPlayer);
-        bReturn.setSize(100,75);
+        bReturn.setSize(100, 75);
         add(bReturn);
     }
 
@@ -37,7 +37,7 @@ public class GamePanel extends JPanel {
 
         for (Cell c : this.model.grid) {
 
-            Graphics2D g2 = (Graphics2D)g;
+            Graphics2D g2 = (Graphics2D) g;
             //Cell
             g2.setColor(c.getColor());
             g2.fillPolygon(c);
@@ -48,7 +48,7 @@ public class GamePanel extends JPanel {
             else
                 s = new BasicStroke(1.5f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER, 10.0f);
             g2.setStroke(s);
-            Color cBordure = new Color(37,36,37);
+            Color cBordure = new Color(37, 36, 37);
             g2.setColor(cBordure);
             g2.drawPolygon(c);
 
