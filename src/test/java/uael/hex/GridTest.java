@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class GridTest {
 
     // On définit la grid pour les tests
-    Grid gridTest = new Grid(10, 10);
+    Grid gridTest = new Grid(8);
 
     // Ce test permet également de tester la méthode getCell
     @Test

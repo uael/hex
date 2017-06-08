@@ -27,7 +27,7 @@ public class HexView extends JFrame implements Observer {
         this.pVictory = new VictoryFrame(model);
         model.addObserver(this);
 
-        setBounds(200, 100, 900, 650);
+        setBounds(500, 400, 900, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

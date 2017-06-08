@@ -15,14 +15,14 @@ import java.awt.*;
 public class GamePanel extends JPanel {
     public JButton bReturn = new JButton("Retour menu");
     JLabel currentPlayer = new JLabel("Empty");
-    private HexModel model;
+    public HexModel model;
 
     GamePanel(HexModel model) {
         super();
         this.model = model;
         currentPlayer.setFont(new Font(currentPlayer.getFont().getName(), Font.PLAIN, 50));
         add(currentPlayer);
-        bReturn.setSize(100, 75);
+        bReturn.setSize(125, 100);
         add(bReturn);
     }
 

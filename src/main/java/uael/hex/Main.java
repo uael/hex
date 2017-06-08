@@ -1,7 +1,10 @@
 package uael.hex;
 
-import uael.hex.Controller.HexController;
+import uael.hex.Controller.CustomController;
+import uael.hex.Model.Game;
 import uael.hex.Model.HexModel;
+import uael.hex.Model.Montecarlo;
+import uael.hex.Model.RealPlayer;
 import uael.hex.View.HexView;
 
 /**
@@ -18,7 +21,7 @@ public class Main {
         //Creation de la vue
         HexView view = new HexView(model, "HexGame - Abomnes - Bretheau - S3C");
         //Creation du controller
-        HexController controller = new HexController(model, view);
+        CustomController controller = new CustomController(model, view, new Game(model, new RealPlayer(), new Montecarlo()));
 
     }
 

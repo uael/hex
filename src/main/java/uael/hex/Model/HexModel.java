@@ -12,7 +12,7 @@ import java.util.Observable;
 
 public class HexModel extends Observable {
 
-    public Grid grid = new Grid(10, 10); // La grille du jeu
+    public Grid grid = new Grid(8); // La grille du jeu
     /**
      * *****************
      * <p>
@@ -174,9 +174,9 @@ public class HexModel extends Observable {
 
                 // Test de victory
                 for (Cell cells : nextNeighborCells) {
-                    if (cells.getColor() == Color.BLUE && cells.getX() >= grid.getNbLines() - 2)
+                    if (cells.getColor() == Color.BLUE && cells.getX() >= grid.getRow()-1)
                         victory = true;
-                    if (cells.getColor() == Color.RED && cells.getY() >= grid.getNbColumns() - 2)
+                    if (cells.getColor() == Color.RED && cells.getY() >= grid.getRow()-1)
                         victory = true;
                 }
 

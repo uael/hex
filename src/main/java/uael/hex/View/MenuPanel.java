@@ -13,8 +13,8 @@ import java.awt.*;
 
 public class MenuPanel extends JPanel {
 
-    private static final int bWidth = 150;
-    private static final int bHeight = 75;
+    private static final int bWidth = 175;
+    private static final int bHeight = 100;
     public JButton bPlay = new JButton("Jouer");
     public JButton bQuit = new JButton("Quitter");
     public JButton bReset = new JButton("Rejouer");

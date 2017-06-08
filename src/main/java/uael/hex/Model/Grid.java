@@ -11,52 +11,44 @@ import java.util.ArrayList;
 
 public class Grid extends ArrayList<Cell> {
 
-    private int nbLines;
-    private int nbColumns;
+    private int row;
+    private int length;
 
-    public Grid(int nbLines, int nbColumns) {
-        this.nbLines = nbLines;
-        this.nbColumns = nbColumns;
+    public Grid(int nbColumns) {
+        super((nbColumns+1)*(nbColumns+1));
+        row = nbColumns;
+        this.length = row * row;
     }
 
     public void buildGrid() {
-        Cell c;
-        for (int i = 0; i < nbLines; i++) {
-            for (int j = 0; j < nbColumns; j++) {
-                if ((i != 0 && j != nbColumns - 1) || (i != nbLines - 1 && j != 0)) {
-                    if (i == 0)
-                        c = new Cell(i, j, Color.BLUE, true);
-                    else if (i == nbLines - 1)
-                        c = new Cell(i, j, Color.BLUE, true);
-                    else if (j == 0)
-                        c = new Cell(i, j, Color.RED, true);
-                    else if (j == nbColumns - 1)
-                        c = new Cell(i, j, Color.RED, true);
-                    else
-                        c = new Cell(i, j, Color.WHITE, false);
-
-                    add(c);
-                }
+        for (int k = 0; k < length; k++) {
+            this.add(new Cell(k / row, k % row, Color.WHITE, false));
+        }
+        for (int x = -1; x <= row; x++) {
+            for (int y = -1; y <= row; y++) {
+                if (x == -1 && y >= 0)
+                    add(new Cell(x, y, Color.BLUE, true));
+                else if (x == row && y < row)
+                    add(new Cell(x, y, Color.BLUE, true));
+                else if (y == -1 && x >= 0)
+                    add(new Cell(x, y, Color.RED, true));
+                else if (y == row && x < row)
+                    add(new Cell(x, y, Color.RED, true));
             }
         }
     }
 
-    public int getNbLines() {
-        return nbLines;
-    }
-
-    public int getNbColumns() {
-        return nbColumns;
+    public int getRow() {
+        return row;
     }
 
     public Cell getCell(int i, int j) {
-        Cell cell = null;
-        for (Cell c : this) {
-            if (c.getX() == i && c.getY() == j) {
-                cell = c;
-            }
+        int idx = i * row + j;
+
+        if (idx < 0 || idx >= length) {
+            return null;
         }
-        return cell;
+        return this.get(i * row + j);
     }
 
     public void setPast(Cell cell) {
