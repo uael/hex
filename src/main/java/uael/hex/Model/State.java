@@ -15,6 +15,10 @@ public class State {
     public State(int size) {
         this.size = size;
         this.length = size * size;
+        reset();
+    }
+
+    void reset() {
         this.data = new int[length];
     }
 

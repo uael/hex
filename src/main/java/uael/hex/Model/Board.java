@@ -12,7 +12,12 @@ public class Board {
         this.players[1] = red;
         this.freecells = new int[length];
         this.freecells_idx = new int[length];
+        reset();
+    }
 
+    void reset() {
+        players[0].state.reset();
+        players[1].state.reset();
         for (int i = 0; i < length; ++i) {
             freecells_idx[i] = freecells[i] = i;
         }

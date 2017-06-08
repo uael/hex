@@ -69,6 +69,7 @@ public class CustomController implements ActionListener {
                 model.rebuild();
                 model.setInGame(true);
                 model.setCurrentGame(true);
+                game.reset();
                 timer.purge();
                 timer.schedule(game, 0L, 1000L);
             } else if (e.getSource() == view.pMenu.bQuit) {
