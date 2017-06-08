@@ -37,25 +37,25 @@ public class Game extends TimerTask {
 
     public boolean play(int x, int y) {
         int pos;
-        boolean victory;
 
         pos = x * board.size + y;
         if (board.isToggled(pos)) {
             return false;
         }
         board.toggle(pos, current_color);
-        if (model != null) {
-            Cell c = model.grid.getCell(x, y);
-            c.setColor(current_color == 0 ? Color.BLUE : Color.RED);
+        Cell c = model.grid.getCell(x, y);
+        c.setColor(current_color == 0 ? Color.BLUE : Color.RED);
+        if (board.players[current_color].win()) {
+            model.setWinner(current_color == 0 ? Color.BLUE : Color.RED);
+            this.cancel();
+            return true;
         }
-        victory = board.players[current_color].win();
         current_color ^= 1;
-        return victory;
+        return false;
     }
 
     public boolean play(Cell cell) {
         int pos;
-        boolean victory;
 
         pos = cell.getX() * board.size + cell.getY();
         if (board.isToggled(pos)) {
@@ -63,9 +63,13 @@ public class Game extends TimerTask {
         }
         board.toggle(pos, current_color);
         cell.setColor(current_color == 0 ? Color.BLUE : Color.RED);
-        victory = board.players[current_color].win();
+        if (board.players[current_color].win()) {
+            model.setWinner(current_color == 0 ? Color.BLUE : Color.RED);
+            this.cancel();
+            return true;
+        }
         current_color ^= 1;
-        return victory;
+        return false;
     }
 
     public boolean play(MouseEvent e) {
