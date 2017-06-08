@@ -1,29 +1,31 @@
 package uael.hex.Model;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Montecarlo implements PlayerMove {
+public class Montecarlo extends Player {
     private Random random = new Random();
 
-    @Override
-    public Move move(Player player, Board board) {
-        int i, p, k, moves, free_nodes_count = board.freecells_c, nodes[];
-        int j, max_wins;
-        State state = new State(board.size);
-        Move win_pos, free_nodes[] = new Move[free_nodes_count], free_nodes_copy[];
-        int color = player.color == Color.BLUE ? 0 : 1;
+    public Montecarlo(int size) {
+        super(size);
+    }
 
-        nodes = Arrays.copyOf(board.freecells, free_nodes_count);
+    @Override
+    void play() {
+        int i, p, k, moves, free_nodes_count = game.board.freecells_c, nodes[];
+        int j, max_wins;
+        State s = new State(game.board.size);
+        Move win_pos, free_nodes[] = new Move[free_nodes_count], free_nodes_copy[];
+
+        nodes = Arrays.copyOf(game.board.freecells, free_nodes_count);
         for (i = 0; i < free_nodes_count; ++i) {
             int id = nodes[i], x, y;
             if (color > 0) {
-                x = id % board.size;
-                y = id / board.size;
+                x = id % game.board.size;
+                y = id / game.board.size;
             } else {
-                x = id / board.size;
-                y = id % board.size;
+                x = id / game.board.size;
+                y = id % game.board.size;
             }
             free_nodes[i] = new Move(x, y);
         }
@@ -32,12 +34,12 @@ public class Montecarlo implements PlayerMove {
         win_pos = free_nodes_copy[0];
         moves = (free_nodes_count - 2) / 2 + color;
         for (p = 0; p < free_nodes_count; ++p) {
-            int wins = 0, possible_wins = 100;
+            int wins = 0, possible_wins = 1000;
             Move pos = free_nodes_copy[p];
 
-            for (j = 0; j < 100; ++j) {
-                state.data = Arrays.copyOf(board.players[color].state.data, board.length);
-                state.toogle(pos.x, pos.y);
+            for (j = 0; j < 1000; ++j) {
+                s.data = Arrays.copyOf(state.data, game.board.length);
+                s.toggle(pos.x, pos.y);
                 for (k = 0; k < moves; ++k) {
                     int kpos;
                     Move id, tmp;
@@ -48,13 +50,13 @@ public class Montecarlo implements PlayerMove {
                     free_nodes[kpos] = free_nodes[free_nodes_count - 1 - k];
                     free_nodes[free_nodes_count - 1 - k] = tmp;
 
-                    if (pos.v == id.v) {
+                    if (pos.x == id.x && pos.y == id.y) {
                         ++k;
                         continue;
                     }
-                    state.toogle(id.x, id.y);
+                    s.toggle(id.x, id.y);
                 }
-                if (state.win()) {
+                if (s.win()) {
                     ++wins;
                 } else {
                     possible_wins--;
@@ -63,16 +65,15 @@ public class Montecarlo implements PlayerMove {
                     break;
                 }
             }
-            if (possible_wins < max_wins) {
-                continue;
-            }
-            if (wins > max_wins) {
+            if (possible_wins >= max_wins && wins > max_wins) {
                 win_pos = pos;
                 max_wins = wins;
             }
         }
-        if (color > 0)
-            return new Move(win_pos.y, win_pos.x);
-        return win_pos;
+        if (color > 0) {
+            game.play(win_pos.y, win_pos.x);
+        } else {
+            game.play(win_pos.x, win_pos.y);
+        }
     }
 }

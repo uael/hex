@@ -24,7 +24,7 @@ public class Board {
         int y = idx % size;
 
         return (((players[0].state.data[x] >> y) & 1) |
-                ((players[0].state.data[y] >> x) & 1)) > 0;
+                ((players[1].state.data[y] >> x) & 1)) > 0;
     }
 
     public void toggle(int idx, int color) {

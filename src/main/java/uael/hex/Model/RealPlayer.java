@@ -3,22 +3,16 @@ package uael.hex.Model;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class RealPlayer implements MouseListener, PlayerMove {
-    private Game game;
-
-    @Override
-    public void setGame(Game game) {
-        this.game = game;
+public class RealPlayer extends Player implements MouseListener {
+    public RealPlayer(int size) {
+        super(size);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        game.play(e);
-    }
-
-    @Override
-    public Move move(Player player, Board board) {
-        return null;
+        if (game.canPlay()) {
+            game.play(e);
+        }
     }
 
     @Override
@@ -39,5 +33,9 @@ public class RealPlayer implements MouseListener, PlayerMove {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    void play() {
     }
 }

@@ -8,41 +8,44 @@ public class Game extends TimerTask {
     public final HexModel model;
     public Board board;
     public int current_color;
+    private boolean playing = false;
 
-    public Game(HexModel model, PlayerMove blue, PlayerMove red) {
+    public Game(HexModel model, Player blue, Player red) {
         this.model = model;
         board = new Board(
             model.grid.getRow(),
-            new Player(model.grid.getRow(), Color.BLUE, blue),
-            new Player(model.grid.getRow(), Color.RED, red)
+            blue,
+            red
         );
-        board.players[0].move.setGame(this);
-        board.players[1].move.setGame(this);
+        board.players[0].setGame(this);
+        board.players[0].setColor(0);
+        board.players[1].setGame(this);
+        board.players[1].setColor(1);
     }
 
     public void run() {
-        Player player;
-        Move move;
-
-        player = board.players[current_color];
-        move = player.move.move(player, board);
-
-        if (move != null) {
-            play(move);
+        if (!playing) {
+            playing = true;
+            board.players[current_color].play();
+            playing = false;
         }
     }
 
-    public boolean play(Move move) {
+    public boolean canPlay() {
+        return !playing;
+    }
+
+    public boolean play(int x, int y) {
         int pos;
         boolean victory;
 
-        pos = move.x * board.size + move.y;
+        pos = x * board.size + y;
         if (board.isToggled(pos)) {
             return false;
         }
         board.toggle(pos, current_color);
         if (model != null) {
-            Cell c = model.grid.getCell(move.x, move.y);
+            Cell c = model.grid.getCell(x, y);
             c.setColor(current_color == 0 ? Color.BLUE : Color.RED);
         }
         victory = board.players[current_color].win();

@@ -2,13 +2,12 @@ package uael.hex.Model;
 
 import java.util.Arrays;
 
-enum LinkState {
-    LinkDown,
-    LinkUp,
-    Capture
-}
-
 public class State {
+    enum LinkState {
+        LinkDown,
+        LinkUp,
+        Capture
+    }
     public int[] data;
     private int size;
     private int length;
@@ -19,7 +18,7 @@ public class State {
         this.data = new int[length];
     }
 
-    void toogle(int row, int col) {
+    void toggle(int row, int col) {
         data[row] |= 1 << col;
     }
 

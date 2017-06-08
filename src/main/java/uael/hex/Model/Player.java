@@ -1,19 +1,25 @@
 package uael.hex.Model;
 
-import java.awt.*;
-
-public class Player {
-    public final Color color;
+public abstract class Player {
+    public int color;
     public final State state;
-    public final PlayerMove move;
+    public Game game;
 
-    public Player(int size, Color color, PlayerMove move) {
-        this.color = color;
+    public Player(int size) {
         this.state = new State(size);
-        this.move = move;
     }
 
     public boolean win() {
         return state.win();
+    }
+
+    abstract void play();
+
+    void setGame(Game game) {
+        this.game = game;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }
