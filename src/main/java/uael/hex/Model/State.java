@@ -3,15 +3,9 @@ package uael.hex.Model;
 import java.util.Arrays;
 
 public class State {
-    enum LinkState {
-        LinkDown,
-        LinkUp,
-        Capture
-    }
     public int[] data;
     private int size;
     private int length;
-
     public State(int size) {
         this.size = size;
         this.length = size * size;
@@ -109,5 +103,11 @@ public class State {
                 }
             }
         }
+    }
+
+    enum LinkState {
+        LinkDown,
+        LinkUp,
+        Capture
     }
 }

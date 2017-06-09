@@ -21,7 +21,7 @@ public class Main {
         //Creation de la vue
         HexView view = new HexView(model, "HexGame - Abomnes - Bretheau - S3C");
         //Creation du controller
-        CustomController controller = new CustomController(model, view, new Game(model, new Montecarlo(model.grid.getRow()), new RealPlayer(model.grid.getRow())));
+        CustomController controller = new CustomController(model, view, new Game(model, new RealPlayer(model.grid.getRow()), new Montecarlo(model.grid.getRow())));
 
     }
 

@@ -1,8 +1,8 @@
 package uael.hex.Model;
 
 public abstract class Player {
-    public int color;
     public final State state;
+    public int color;
     public Game game;
 
     public Player(int size) {

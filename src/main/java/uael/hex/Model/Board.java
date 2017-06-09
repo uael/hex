@@ -38,8 +38,7 @@ public class Board {
         if (color > 0) {
             x = idx % size;
             y = idx / size;
-        }
-        else {
+        } else {
             x = idx / size;
             y = idx % size;
         }

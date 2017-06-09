@@ -14,8 +14,8 @@ import java.awt.*;
 
 public class GamePanel extends JPanel {
     public JButton bReturn = new JButton("Retour menu");
-    JLabel currentPlayer = new JLabel("Empty");
     public HexModel model;
+    JLabel currentPlayer = new JLabel("Empty");
 
     GamePanel(HexModel model) {
         super();

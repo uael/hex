@@ -15,7 +15,7 @@ public class Grid extends ArrayList<Cell> {
     private int length;
 
     public Grid(int nbColumns) {
-        super((nbColumns+1)*(nbColumns+1));
+        super((nbColumns + 1) * (nbColumns + 1));
         row = nbColumns;
         this.length = row * row;
     }

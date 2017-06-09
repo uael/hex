@@ -34,10 +34,10 @@ public class Montecarlo extends Player {
         win_pos = free_nodes_copy[0];
         moves = (free_nodes_count - 2) / 2 + color;
         for (p = 0; p < free_nodes_count; ++p) {
-            int wins = 0, possible_wins = 1000;
+            int wins = 0, possible_wins = 5000;
             Move pos = free_nodes_copy[p];
 
-            for (j = 0; j < 1000; ++j) {
+            for (j = 0; j < 5000; ++j) {
                 s.data = Arrays.copyOf(state.data, game.board.length);
                 s.toggle(pos.x, pos.y);
                 for (k = 0; k < moves; ++k) {
