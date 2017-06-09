@@ -1,9 +1,9 @@
 package uael.hex.Model;
 
-public class Move {
-    public int x, y;
+class Move {
+    int x, y;
 
-    public Move(int x, int y) {
+    Move(int x, int y) {
         this.x = x;
         this.y = y;
     }

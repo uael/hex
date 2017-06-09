@@ -2,28 +2,27 @@ package uael.hex.Model;
 
 import java.util.Arrays;
 
-public class State {
-    public int[] data;
-    private int size;
-    private int length;
-    public State(int size) {
+class State {
+    int[] data;
+    int size;
+
+    State(int size) {
         this.size = size;
-        this.length = size * size;
         reset();
     }
 
     void reset() {
-        this.data = new int[length];
+        this.data = new int[size];
     }
 
-    void toggle(int row, int col) {
-        data[row] |= 1 << col;
+    void toggle(int x, int y) {
+        data[x] |= 1 << y;
     }
 
     boolean win() {
-        int board[], shadow_board[] = new int[length];
+        int board[], shadow_board[] = new int[size];
 
-        board = Arrays.copyOf(data, length);
+        board = Arrays.copyOf(data, size);
         int shadow_row = board[0];
         int row = 0;
         shadow_board[0] = board[0];
@@ -72,16 +71,12 @@ public class State {
 
                     board[row_num] ^= capture;
                     shadow_board[row_num] |= capture;
-
-                    // capture right bits
                     do {
                         capture >>= 1;
                         capture &= board[row_num];
                         board[row_num] ^= capture;
                         shadow_board[row_num] |= capture;
                     } while (capture > 0);
-
-                    // capture left bits
                     capture = connections;
                     do {
                         capture <<= 1;

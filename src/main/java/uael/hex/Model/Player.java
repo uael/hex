@@ -1,15 +1,15 @@
 package uael.hex.Model;
 
 public abstract class Player {
-    public final State state;
-    public int color;
-    public Game game;
+    final State state;
+    protected int color;
+    Game game;
 
-    public Player(int size) {
+    Player(int size) {
         this.state = new State(size);
     }
 
-    public boolean win() {
+    boolean win() {
         return state.win();
     }
 

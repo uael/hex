@@ -69,7 +69,7 @@ public class Game extends TimerTask {
         }
     }
 
-    public int getCurrentColor() {
+    int getCurrentColor() {
         return current_color;
     }
 

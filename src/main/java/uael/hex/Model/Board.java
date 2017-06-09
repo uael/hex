@@ -2,10 +2,11 @@ package uael.hex.Model;
 
 public class Board {
     public Player players[] = new Player[2];
-    public int freecells_c, freecells_idx[], freecells[];
-    public int size, length;
+    private int freecells_idx[];
+    int size, freecells_c, freecells[];
+    private int length;
 
-    public Board(int size, Player blue, Player red) {
+    Board(int size, Player blue, Player red) {
         this.size = size;
         this.length = size * size;
         this.players[0] = blue;
@@ -24,7 +25,7 @@ public class Board {
         freecells_c = length;
     }
 
-    public boolean isToggled(int idx) {
+    boolean isToggled(int idx) {
         int x = idx / size;
         int y = idx % size;
 
@@ -32,7 +33,7 @@ public class Board {
                 ((players[1].state.data[y] >> x) & 1)) > 0;
     }
 
-    public void toggle(int idx, int color) {
+    void toggle(int idx, int color) {
         int tmp, x, y, i;
 
         if (color > 0) {

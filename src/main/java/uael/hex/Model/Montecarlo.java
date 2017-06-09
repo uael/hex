@@ -14,18 +14,18 @@ public class Montecarlo extends Player {
     void play() {
         int i, p, k, moves, free_nodes_count = game.board.freecells_c, nodes[];
         int j, max_wins;
-        State s = new State(game.board.size);
+        State s = new State(state.size);
         Move win_pos, free_nodes[] = new Move[free_nodes_count], free_nodes_copy[];
 
         nodes = Arrays.copyOf(game.board.freecells, free_nodes_count);
         for (i = 0; i < free_nodes_count; ++i) {
             int id = nodes[i], x, y;
             if (color > 0) {
-                x = id % game.board.size;
-                y = id / game.board.size;
+                x = id % state.size;
+                y = id / state.size;
             } else {
-                x = id / game.board.size;
-                y = id % game.board.size;
+                x = id / state.size;
+                y = id % state.size;
             }
             free_nodes[i] = new Move(x, y);
         }
@@ -38,7 +38,7 @@ public class Montecarlo extends Player {
             Move pos = free_nodes_copy[p];
 
             for (j = 0; j < 5000; ++j) {
-                s.data = Arrays.copyOf(state.data, game.board.length);
+                s.data = Arrays.copyOf(state.data, state.size);
                 s.toggle(pos.x, pos.y);
                 for (k = 0; k < moves; ++k) {
                     int kpos;
