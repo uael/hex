@@ -20,14 +20,14 @@ public class Game extends TimerTask {
     }
 
     public void reset() {
-        current_color = 0;
+        setCurrent_color(0);
         board.reset();
     }
 
     public void run() {
         if (!playing) {
             playing = true;
-            board.players[current_color].play();
+            board.players[getCurrentColor()].play();
             playing = false;
         }
     }
@@ -52,16 +52,28 @@ public class Game extends TimerTask {
     private void play(Cell cell) {
         int pos;
 
-        pos = cell.getX() * board.size + cell.getY();
-        if (board.isToggled(pos)) {
+        if (cell.getBorder()) {
             return;
         }
-        board.toggle(pos, current_color);
-        cell.setColor(current_color == 0 ? Color.BLUE : Color.RED);
-        if (board.players[current_color].win()) {
-            model.setWinner(current_color == 0 ? Color.BLUE : Color.RED);
-            reset();
+        pos = cell.getX() * board.size + cell.getY();
+        if (board.isToggled(pos) && cell.getColor() != Color.white) {
+            return;
         }
-        current_color ^= 1;
+        board.toggle(pos, getCurrentColor());
+        cell.setColor(getCurrentColor() == 0 ? Color.BLUE : Color.RED);
+        if (board.players[getCurrentColor()].win()) {
+            model.setWinner(getCurrentColor() == 0 ? Color.BLUE : Color.RED);
+            reset();
+        } else {
+            setCurrent_color(getCurrentColor() ^ 1);
+        }
+    }
+
+    public int getCurrentColor() {
+        return current_color;
+    }
+
+    private void setCurrent_color(int current_color) {
+        this.current_color = current_color;
     }
 }

@@ -161,6 +161,8 @@ public class HexModel extends Observable {
         notifyObservers();
     }
 
+
+
     public boolean researchWinner(ArrayList<Cell> neighborCells) {
 
         boolean victory = false;
@@ -174,9 +176,9 @@ public class HexModel extends Observable {
 
                 // Test de victory
                 for (Cell cells : nextNeighborCells) {
-                    if (cells.getColor() == Color.BLUE && cells.getX() >= grid.getRow() - 1)
+                    if (cells.getColor() == Color.BLUE && cells.getX() >= grid.getRow()-1)
                         victory = true;
-                    if (cells.getColor() == Color.RED && cells.getY() >= grid.getRow() - 1)
+                    if (cells.getColor() == Color.RED && cells.getY() >= grid.getRow()-1)
                         victory = true;
                 }
 

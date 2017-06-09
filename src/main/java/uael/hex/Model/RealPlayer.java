@@ -10,7 +10,7 @@ public class RealPlayer extends Player implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (game.canPlay()) {
+        if (game.canPlay() && game.getCurrentColor() == color) {
             game.play(e);
         }
     }

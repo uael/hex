@@ -45,7 +45,9 @@ public class CustomController implements ActionListener {
                 model.setInGame(true);
                 model.setCurrentGame(true);
                 timer.purge();
-                timer.schedule(game, 0L, 1000L);
+                try {
+                    timer.schedule(game, 0L, 1000L);
+                } catch (Exception ignored) {}
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
@@ -70,7 +72,9 @@ public class CustomController implements ActionListener {
                 model.setCurrentGame(true);
                 game.reset();
                 timer.purge();
-                timer.schedule(game, 0L, 1000L);
+                try {
+                    timer.schedule(game, 0L, 1000L);
+                } catch (Exception ignored) {}
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
