@@ -5,9 +5,11 @@ import java.util.Random;
 
 public class Montecarlo extends Player {
     private Random random = new Random();
+    private int difficulty;
 
-    public Montecarlo(int size) {
+    public Montecarlo(int size, int difficulty) {
         super(size);
+        this.difficulty = difficulty;
     }
 
     @Override
@@ -34,10 +36,10 @@ public class Montecarlo extends Player {
         win_pos = free_nodes_copy[0];
         moves = (free_nodes_count - 2) / 2 + color;
         for (p = 0; p < free_nodes_count; ++p) {
-            int wins = 0, possible_wins = 5000;
+            int wins = 0, possible_wins = difficulty;
             Move pos = free_nodes_copy[p];
 
-            for (j = 0; j < 5000; ++j) {
+            for (j = 0; j < difficulty; ++j) {
                 s.data = Arrays.copyOf(state.data, state.size);
                 s.toggle(pos.x, pos.y);
                 for (k = 0; k < moves; ++k) {

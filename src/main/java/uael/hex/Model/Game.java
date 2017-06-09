@@ -25,7 +25,7 @@ public class Game extends TimerTask {
     }
 
     public void run() {
-        if (!playing) {
+        if (canPlay()) {
             playing = true;
             board.players[getCurrentColor()].play();
             playing = false;
@@ -33,7 +33,7 @@ public class Game extends TimerTask {
     }
 
     boolean canPlay() {
-        return !playing;
+        return !playing && model.getInGame();
     }
 
     void play(int x, int y) {
@@ -64,6 +64,7 @@ public class Game extends TimerTask {
         if (board.players[getCurrentColor()].win()) {
             model.setWinner(getCurrentColor() == 0 ? Color.BLUE : Color.RED);
             reset();
+            model.setInGame(false);
         } else {
             setCurrent_color(getCurrentColor() ^ 1);
         }

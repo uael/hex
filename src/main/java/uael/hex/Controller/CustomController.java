@@ -51,7 +51,7 @@ public class CustomController implements ActionListener {
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
-                timer.purge();
+                timer.cancel();
             }
         }
 
@@ -78,6 +78,11 @@ public class CustomController implements ActionListener {
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
+                timer.cancel();
+            } else if (e.getSource() == view.pVictory.panel.bReturn) {
+                view.pVictory.setVisible(false);
+                model.rebuild();
+                timer.purge();
             }
         }
 

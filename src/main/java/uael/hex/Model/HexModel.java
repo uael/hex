@@ -12,7 +12,7 @@ import java.util.Observable;
 
 public class HexModel extends Observable {
 
-    public Grid grid = new Grid(8); // La grille du jeu
+    public Grid grid = new Grid(9); // La grille du jeu
     /**
      * *****************
      * <p>
