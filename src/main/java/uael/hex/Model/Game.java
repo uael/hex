@@ -20,7 +20,7 @@ public class Game extends TimerTask {
     }
 
     public void reset() {
-        setCurrent_color(0);
+        setCurrentColor(0);
         board.reset();
     }
 
@@ -66,7 +66,7 @@ public class Game extends TimerTask {
             reset();
             model.setInGame(false);
         } else {
-            setCurrent_color(getCurrentColor() ^ 1);
+            setCurrentColor(getCurrentColor() ^ 1);
         }
     }
 
@@ -74,7 +74,7 @@ public class Game extends TimerTask {
         return current_color;
     }
 
-    private void setCurrent_color(int current_color) {
+    private void setCurrentColor(int current_color) {
         this.current_color = current_color;
     }
 }

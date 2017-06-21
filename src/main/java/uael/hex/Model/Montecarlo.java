@@ -52,7 +52,7 @@ public class Montecarlo extends Player {
                     free_nodes[kpos] = free_nodes[free_nodes_count - 1 - k];
                     free_nodes[free_nodes_count - 1 - k] = tmp;
 
-                    if (pos.x == id.x && pos.y == id.y) {
+                    if (pos.equals(id)) {
                         ++k;
                         continue;
                     }
@@ -76,6 +76,33 @@ public class Montecarlo extends Player {
             game.play(win_pos.y, win_pos.x);
         } else {
             game.play(win_pos.x, win_pos.y);
+        }
+    }
+
+    class Move {
+        int x, y;
+
+        Move(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Move move = (Move) o;
+
+            if (x != move.x) return false;
+            return y == move.y;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = x;
+            result = 31 * result + y;
+            return result;
         }
     }
 }
