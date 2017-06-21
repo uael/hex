@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class HexModelTest {
 
     //On définit le model pour les tests
-    HexModel modelTest = new HexModel();
+    HexModel modelTest = new HexModel(9);
 
     @Test
     public void testChangePlayer() {

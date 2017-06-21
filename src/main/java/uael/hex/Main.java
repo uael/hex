@@ -15,21 +15,21 @@ import uael.hex.View.HexView;
 
 public class Main {
 
-    public Main() {
+    private Main(int size) {
         //Creation du model
-        HexModel model = new HexModel();
+        HexModel model = new HexModel(size);
         //Creation de la vue
         HexView view = new HexView(model, "HexGame - Abomnes - Bretheau - S3C");
         //Creation du controller
         CustomController controller = new CustomController(
             model,
             view,
-            new Game(model, new Montecarlo(model.grid.getRow(), 5000), new Montecarlo(model.grid.getRow(), 5000))
+            new Game(model, new Montecarlo(size, 2000), new Montecarlo(size, 2000))
         );
 
     }
 
     public static void main(String[] args) {
-        new Main();
+        new Main(9);
     }
 }

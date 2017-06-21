@@ -12,7 +12,7 @@ import java.util.Observable;
 
 public class HexModel extends Observable {
 
-    public Grid grid = new Grid(9); // La grille du jeu
+    public Grid grid; // La grille du jeu
     /**
      * *****************
      * <p>
@@ -35,12 +35,13 @@ public class HexModel extends Observable {
      * <p>
      * ************
      */
-    public HexModel() {
+    public HexModel(int size) {
         this.inGame = false; // On affecte false pour dire qu'on commence sur le panel du menu
         this.currentGame = false; // On afecte false car aucune partie n'est lancé
         this.player = Color.BLUE; // On affecte false au player pour dire que le player bleu commence
         this.winner = Color.WHITE;
         this.victory = false; // On affecte false à la victory car auncun player n'a gagné
+        this.grid = new Grid(size);
         grid.buildGrid(); // On construit la grille
     }
 
