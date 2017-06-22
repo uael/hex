@@ -2,8 +2,8 @@ package uael.hex;
 
 public class Board {
     public Player players[] = new Player[2];
-    private int freecells_idx[];
     int size, freecells_c, freecells[];
+    private int freecells_idx[];
     private int length;
 
     Board(int size, Player blue, Player red) {

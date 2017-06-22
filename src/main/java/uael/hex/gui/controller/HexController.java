@@ -47,7 +47,8 @@ public class HexController implements ActionListener {
                 timer.purge();
                 try {
                     timer.schedule(game, 0L, 1000L);
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
@@ -74,7 +75,8 @@ public class HexController implements ActionListener {
                 timer.purge();
                 try {
                     timer.schedule(game, 0L, 1000L);
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();

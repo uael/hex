@@ -19,9 +19,9 @@ public class Main {
         HexView view = new HexView(model, "HexGame - Abomnes - Bretheau - S3C");
         //Creation du controller
         HexController controller = new HexController(
-            model,
-            view,
-            new Game(model, new Montecarlo(size, 2000), new Montecarlo(size, 2000))
+                model,
+                view,
+                new Game(model, new Montecarlo(size, 2000), new Montecarlo(size, 2000))
         );
 
     }
