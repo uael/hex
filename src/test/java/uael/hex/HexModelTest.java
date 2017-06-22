@@ -1,7 +1,6 @@
 package uael.hex;
 
-import uael.hex.Model.Cell;
-import uael.hex.Model.HexModel;
+import uael.hex.gui.model.HexModel;
 import org.junit.Assert;
 import org.junit.Test;
 

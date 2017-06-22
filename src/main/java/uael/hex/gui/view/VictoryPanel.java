@@ -1,6 +1,6 @@
-package uael.hex.View;
+package uael.hex.gui.view;
 
-import uael.hex.Model.HexModel;
+import uael.hex.gui.model.HexModel;
 
 import javax.swing.*;
 import java.awt.*;

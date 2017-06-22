@@ -1,4 +1,4 @@
-package uael.hex.Model;
+package uael.hex;
 
 import java.util.Arrays;
 import java.util.Random;

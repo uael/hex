@@ -1,8 +1,8 @@
-package uael.hex.Controller;
+package uael.hex.gui.controller;
 
-import uael.hex.Model.Cell;
-import uael.hex.Model.HexModel;
-import uael.hex.View.HexView;
+import uael.hex.Cell;
+import uael.hex.gui.model.HexModel;
+import uael.hex.gui.view.HexView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

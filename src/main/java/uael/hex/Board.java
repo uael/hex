@@ -1,4 +1,4 @@
-package uael.hex.Model;
+package uael.hex;
 
 public class Board {
     public Player players[] = new Player[2];

@@ -1,8 +1,8 @@
-package uael.hex.Controller;
+package uael.hex.gui.controller;
 
-import uael.hex.Model.Game;
-import uael.hex.Model.HexModel;
-import uael.hex.View.HexView;
+import uael.hex.Game;
+import uael.hex.gui.model.HexModel;
+import uael.hex.gui.view.HexView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package uael.hex.Model;
+package uael.hex;
 
 public abstract class Player {
     final State state;

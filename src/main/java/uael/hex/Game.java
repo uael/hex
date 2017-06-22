@@ -1,4 +1,6 @@
-package uael.hex.Model;
+package uael.hex;
+
+import uael.hex.gui.model.HexModel;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

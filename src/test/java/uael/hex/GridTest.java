@@ -1,7 +1,5 @@
 package uael.hex;
 
-import uael.hex.Model.Cell;
-import uael.hex.Model.Grid;
 import org.junit.Test;
 
 import java.awt.*;

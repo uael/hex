@@ -1,11 +1,8 @@
 package uael.hex;
 
-import uael.hex.Controller.CustomController;
-import uael.hex.Model.Game;
-import uael.hex.Model.HexModel;
-import uael.hex.Model.Montecarlo;
-import uael.hex.Model.RealPlayer;
-import uael.hex.View.HexView;
+import uael.hex.gui.controller.CustomController;
+import uael.hex.gui.model.HexModel;
+import uael.hex.gui.view.HexView;
 
 /**
  * Abomnes Gauthier
