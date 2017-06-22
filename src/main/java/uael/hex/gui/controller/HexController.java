@@ -1,59 +1,38 @@
 package uael.hex.gui.controller;
 
-import uael.hex.gui.model.Cell;
+import uael.hex.Game;
 import uael.hex.gui.model.HexModel;
 import uael.hex.gui.view.HexView;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Timer;
 
-/**
- * Abomnes Gauthier
- * Bretheau Yann
- * S3C
- */
-
-public class HexController implements ActionListener, MouseListener {
-
+public class HexController implements ActionListener {
     private HexModel model;
     private HexView view;
+    private Game game;
+    private Timer timer = new Timer();
 
-    /**
-     * ***********
-     * <p>
-     * Constructeur
-     * <p>
-     * ************
-     */
-
-    public HexController(HexModel model, HexView view) {
+    public HexController(HexModel model, HexView view, Game game) {
         this.model = model;
         this.view = view;
+        this.game = game;
 
         view.pMenu.bPlay.addActionListener(this);
         view.pMenu.bReset.addActionListener(this);
         view.pMenu.bQuit.addActionListener(this);
-
-        view.pGame.addMouseListener(this);
         view.pGame.bReturn.addActionListener(this);
-
         view.pVictory.panel.bReturn.addActionListener(this);
-    }
 
-    /**
-     * *****************
-     * <p>
-     * Action des boutons
-     * <p>
-     * Les attributs du model enJeu et enCours permettent de connaitre l'état du jeu.
-     * L'attribut enJeu permet de différencier le panel du menu et du jeu et l'attribut enCours permet de savoir si une partie est en cours.
-     * Grâce à l'attribut enCours on peut proposer différente action dans le menu, comme une action de reset si une partie est en cours.
-     * <p>
-     * ******************
-     */
+        if (game.board.players[0] instanceof MouseListener) {
+            view.pGame.addMouseListener((MouseListener) game.board.players[0]);
+        }
+        if (game.board.players[1] instanceof MouseListener) {
+            view.pGame.addMouseListener((MouseListener) game.board.players[1]);
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -65,9 +44,14 @@ public class HexController implements ActionListener, MouseListener {
             if (e.getSource() == view.pMenu.bPlay) {
                 model.setInGame(true);
                 model.setCurrentGame(true);
+                timer.purge();
+                try {
+                    timer.schedule(game, 0L, 1000L);
+                } catch (Exception ignored) {}
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
+                timer.cancel();
             }
         }
 
@@ -79,14 +63,26 @@ public class HexController implements ActionListener, MouseListener {
             if (e.getSource() == view.pMenu.bPlay) {
                 model.setInGame(true);
                 model.setCurrentGame(true);
+                timer.purge();
+                timer.schedule(game, 0L, 1000L);
             } else if (e.getSource() == view.pMenu.bReset) {
                 // Si on clique sur le bouton reset on relance une nouvelle partie
                 model.rebuild();
                 model.setInGame(true);
                 model.setCurrentGame(true);
+                game.reset();
+                timer.purge();
+                try {
+                    timer.schedule(game, 0L, 1000L);
+                } catch (Exception ignored) {}
             } else if (e.getSource() == view.pMenu.bQuit) {
                 // Si on clique sur le bouton quitter on quitte le jeu
                 view.dispose();
+                timer.cancel();
+            } else if (e.getSource() == view.pVictory.panel.bReturn) {
+                view.pVictory.setVisible(false);
+                model.rebuild();
+                timer.purge();
             }
         }
 
@@ -100,68 +96,14 @@ public class HexController implements ActionListener, MouseListener {
                 model.setInGame(false);
                 model.setCurrentGame(true);
                 view.pVictory.setVisible(false);
+                timer.purge();
             }
             // Si on clique sur le bouton retour de la fenêtre de victoire on retourne au menu, ce qui arrête la partie en cours puisqu'on a eu un gagant
             if (e.getSource() == view.pVictory.panel.bReturn) {
                 view.pVictory.setVisible(false);
                 model.rebuild();
+                timer.purge();
             }
         }
-    }
-
-    /**
-     * *************************
-     * <p>
-     * Action de la souris en jeu
-     * <p>
-     * **************************
-     */
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (model.getInGame()) {
-            // On recupère les coordonnées du clique de la souris
-            float x = e.getX();
-            float y = e.getY();
-            /**
-             * Pour toutes les cellules de la grid si les coordonnées de la souris sont comprises dans une cellule de la grid alors on change la couleur
-             * de cette cellule avec la couleur du joueur en courant.
-             * On appel aussi la méthode victoire du model après chaque clique du joueur. On test la victoire par rapport a la couleur du joueur.
-             */
-            for (Cell c : model.grid) {
-                if (c.contains(x, y) && c.getColor() == Color.WHITE)
-                    if (model.getPlayer() == Color.BLUE) {
-                        c.setColor(Color.BLUE);
-                        model.setPlayer(Color.RED);
-                        // On test la victoire pour le joueur bleu, c'est à dire en partant de la cellule bleu en 0,1
-                        model.researchVictory(0, 1);
-                    } else {
-                        c.setColor(Color.RED);
-                        model.setPlayer(Color.BLUE);
-                        // On test la victoire pour le joueur rouge, c'est à dire en partant de la cellule rouge en 1,0
-                        model.researchVictory(1, 0);
-                    }
-            }
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 }
