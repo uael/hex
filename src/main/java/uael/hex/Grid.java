@@ -1,5 +1,7 @@
 package uael.hex;
 
+import uael.hex.gui.model.Cell;
+
 import java.awt.*;
 import java.util.ArrayList;
 

@@ -1,6 +1,7 @@
 package uael.hex;
 
 import org.junit.Test;
+import uael.hex.gui.model.Cell;
 
 import java.awt.*;
 

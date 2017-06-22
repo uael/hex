@@ -1,6 +1,6 @@
 package uael.hex.gui.controller;
 
-import uael.hex.Cell;
+import uael.hex.gui.model.Cell;
 import uael.hex.gui.model.HexModel;
 import uael.hex.gui.view.HexView;
 

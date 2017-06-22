@@ -1,5 +1,6 @@
 package uael.hex;
 
+import uael.hex.gui.model.Cell;
 import uael.hex.gui.model.HexModel;
 
 import java.awt.*;

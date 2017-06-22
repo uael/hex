@@ -1,4 +1,4 @@
-package uael.hex;
+package uael.hex.gui.model;
 
 import java.awt.*;
 
