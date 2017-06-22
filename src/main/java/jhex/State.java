@@ -1,4 +1,4 @@
-package uael.hex;
+package jhex;
 
 import java.util.Arrays;
 

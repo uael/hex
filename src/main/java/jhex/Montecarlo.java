@@ -1,4 +1,4 @@
-package uael.hex;
+package jhex;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -13,7 +13,7 @@ public class Montecarlo extends Player {
     }
 
     @Override
-    void play() {
+    void onTurnStart() {
         int i, p, k, moves, free_nodes_count = game.board.freecells_c, nodes[];
         int j, max_wins;
         State s = new State(state.size);
@@ -79,30 +79,4 @@ public class Montecarlo extends Player {
         }
     }
 
-    class Move {
-        int x, y;
-
-        Move(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Move move = (Move) o;
-
-            if (x != move.x) return false;
-            return y == move.y;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = x;
-            result = 31 * result + y;
-            return result;
-        }
-    }
 }

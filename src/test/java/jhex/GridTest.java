@@ -1,8 +1,8 @@
-package uael.hex;
+package jhex;
 
+import jhex.gui.model.Cell;
+import jhex.gui.model.Grid;
 import org.junit.Test;
-import uael.hex.gui.model.Cell;
-import uael.hex.gui.model.Grid;
 
 import java.awt.*;
 
@@ -22,8 +22,6 @@ public class GridTest {
     // Ce test permet également de tester la méthode getCell
     @Test
     public void testBuildGrid() {
-        gridTest.buildGrid();
-
         // On récupère les cellules pour tester leur couleurs pour voir si la création de la grid fonctionne
         Cell c1 = gridTest.getCell(5, 5);
         Color couleur1 = c1.getColor();
@@ -37,28 +35,5 @@ public class GridTest {
         assertEquals(couleur1, Color.WHITE);
         assertEquals(couleur2, Color.BLUE);
         assertEquals(couleur3, Color.RED);
-    }
-
-    @Test
-    public void testResetPasse() {
-        gridTest.buildGrid();
-
-        // On met l'attribut passe a vrai pour les cellules de la ligne 5
-        for (Cell c : gridTest) {
-            if (c.getX() == 5)
-                c.setPast(true);
-        }
-
-        // On test la méthode restetPast qui doit mettre l'atribut passe de toutes les cellules de la grid a false
-        gridTest.resetPast();
-
-        // Si l'attribut d'une des cellules est toujours a true, le boolean passeTest passera a true
-        boolean passeTest = false;
-        for (Cell c : gridTest) {
-            if (c.getPast() == true)
-                passeTest = true;
-        }
-
-        assertEquals(passeTest, false);
     }
 }

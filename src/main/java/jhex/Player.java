@@ -1,4 +1,4 @@
-package uael.hex;
+package jhex;
 
 public abstract class Player {
     final State state;
@@ -13,7 +13,7 @@ public abstract class Player {
         return state.win();
     }
 
-    abstract void play();
+    abstract void onTurnStart();
 
     void setGame(Game game) {
         this.game = game;

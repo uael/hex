@@ -1,4 +1,4 @@
-package uael.hex;
+package jhex;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,7 +11,7 @@ public class RealPlayer extends Player implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (game.canPlay() && game.getCurrentColor() == color) {
-            game.play(e);
+            //game.play(e);
         }
     }
 
@@ -36,6 +36,6 @@ public class RealPlayer extends Player implements MouseListener {
     }
 
     @Override
-    void play() {
+    void onTurnStart() {
     }
 }

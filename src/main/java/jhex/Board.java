@@ -1,8 +1,10 @@
-package uael.hex;
+package jhex;
 
 public class Board {
     public Player players[] = new Player[2];
-    int size, freecells_c, freecells[];
+    public int size;
+    int freecells_c;
+    int freecells[];
     private int freecells_idx[];
     private int length;
 

@@ -1,4 +1,4 @@
-package uael.hex.gui.model;
+package jhex.gui.model;
 
 import java.awt.*;
 
@@ -9,7 +9,6 @@ import java.awt.*;
  */
 
 public class Cell extends Polygon {
-
     static final int ECART_ORIGIN = 50;
     static final int ECART_CELLULE = 62;
 
@@ -17,7 +16,6 @@ public class Cell extends Polygon {
     private int y;
     private Color color;
     private boolean border;
-    private boolean past = false;
 
     /**
      * ***********
@@ -40,14 +38,6 @@ public class Cell extends Polygon {
         }
     }
 
-    public int getX() {
-        return this.y;
-    }
-
-    public int getY() {
-        return this.x;
-    }
-
     public Color getColor() {
         return color;
     }
@@ -58,13 +48,5 @@ public class Cell extends Polygon {
 
     public boolean getBorder() {
         return this.border;
-    }
-
-    public boolean getPast() {
-        return past;
-    }
-
-    public void setPast(boolean past) {
-        this.past = past;
     }
 }

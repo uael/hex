@@ -1,4 +1,4 @@
-package uael.hex.gui.model;
+package jhex.gui.model;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,17 +10,13 @@ import java.util.ArrayList;
  */
 
 public class Grid extends ArrayList<Cell> {
-
+    public int length;
     private int row;
-    private int length;
 
     public Grid(int nbColumns) {
         super((nbColumns + 1) * (nbColumns + 1));
         row = nbColumns;
         this.length = row * row;
-    }
-
-    public void buildGrid() {
         for (int k = 0; k < length; k++) {
             this.add(new Cell(k / row, k % row, Color.WHITE, false));
         }
@@ -38,10 +34,6 @@ public class Grid extends ArrayList<Cell> {
         }
     }
 
-    public int getRow() {
-        return row;
-    }
-
     public Cell getCell(int i, int j) {
         int idx = i * row + j;
 
@@ -49,18 +41,5 @@ public class Grid extends ArrayList<Cell> {
             return null;
         }
         return this.get(i * row + j);
-    }
-
-    public void setPast(Cell cell) {
-        cell.setPast(true);
-    }
-
-    public boolean getPast(Cell cell) {
-        return cell.getPast();
-    }
-
-    public void resetPast() {
-        for (Cell c : this)
-            c.setPast(false);
     }
 }
