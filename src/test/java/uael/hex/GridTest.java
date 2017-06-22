@@ -2,6 +2,7 @@ package uael.hex;
 
 import org.junit.Test;
 import uael.hex.gui.model.Cell;
+import uael.hex.gui.model.Grid;
 
 import java.awt.*;
 

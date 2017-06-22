@@ -1,4 +1,4 @@
-package uael.hex;
+package uael.hex.gui.model;
 
 import uael.hex.gui.model.Cell;
 
