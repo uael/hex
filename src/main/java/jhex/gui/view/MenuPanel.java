@@ -18,9 +18,9 @@ import java.util.Observer;
 public class MenuPanel extends JPanel implements Observer {
     private static final int bWidth = 175;
     private static final int bHeight = 100;
-    public JButton bPlay = new JButton("Play");
-    public JButton bQuit = new JButton("Quit");
-    public JButton bRestart = new JButton("Restart");
+    private JButton bPlay = new JButton("Play");
+    JButton bQuit = new JButton("Quit");
+    private JButton bRestart = new JButton("Restart");
     private Game game;
     private JLabel title = new JLabel("HexGame");
 
@@ -55,7 +55,7 @@ public class MenuPanel extends JPanel implements Observer {
 
         box3.add(bPanel);
         box4.add(new JSeparator());
-        box5.add(new JLabel("2015 - 2016"));
+        box5.add(new JLabel("2015 - 2017"));
 
         add(box1);
         add(box2);
@@ -92,11 +92,11 @@ public class MenuPanel extends JPanel implements Observer {
 
             switch (gameEvent) {
                 case ON_STOP:
-                    bPlay.setText("Jouer");
+                    bPlay.setText("Play");
                     bRestart.setVisible(false);
                     break;
                 case ON_PAUSE:
-                    bPlay.setText("Reprendre");
+                    bPlay.setText("Resume");
                     bRestart.setVisible(true);
                     break;
             }

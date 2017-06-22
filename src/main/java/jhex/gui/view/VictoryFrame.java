@@ -25,7 +25,7 @@ public class VictoryFrame implements Observer {
     VictoryFrame(Game game) {
         game.addObserver(this);
         panel = new VictoryPanel();
-        frame = new JFrame("Victoire!");
+        frame = new JFrame("Victory!");
         frame.setBounds(400, 50, Width, Height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -43,10 +43,10 @@ public class VictoryFrame implements Observer {
             if (gameEvent == GameEvent.ON_WIN && !frame.isVisible()) {
                 if (game.getWinner() == 0) {
                     panel.setBackground(Color.BLUE);
-                    panel.title.setText("Le joueur Bleu à gagné!");
+                    panel.title.setText("The blue player win!");
                 } else {
                     panel.setBackground(Color.RED);
-                    panel.title.setText("Le joueur Rouge à gagné!");
+                    panel.title.setText("The red player win!");
                 }
                 frame.setVisible(true);
             }
@@ -59,8 +59,8 @@ public class VictoryFrame implements Observer {
 
     public class VictoryPanel extends JPanel {
 
-        JButton bReturn = new JButton("Retour");
-        JLabel title = new JLabel("Un joueur à gagné!");
+        JButton bReturn = new JButton("Back");
+        JLabel title = new JLabel("A player win!");
 
         VictoryPanel() {
             this.setBackground(Color.WHITE);

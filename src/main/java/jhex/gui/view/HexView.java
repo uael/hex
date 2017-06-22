@@ -15,23 +15,22 @@ import java.util.Observer;
  */
 
 public class HexView extends JFrame implements Observer {
-
-    public MenuPanel pMenu;
-    public GamePanel pGame;
-    public VictoryFrame pVictory;
+    private MenuPanel pMenu;
+    private GamePanel pGame;
+    private VictoryFrame pVictory;
 
     public HexView(Game game, String title) {
         super(title);
-        this.pMenu = new MenuPanel(game);
-        this.pGame = new GamePanel(game);
-        this.pVictory = new VictoryFrame(game);
         game.addObserver(this);
-        pMenu.bQuit.addActionListener(this::onQuitClick);
 
-        setBounds(500, 400, 900, 650);
+        pMenu = new MenuPanel(game);
+        pMenu.bQuit.addActionListener(this::onQuitClick);
+        pGame = new GamePanel(game);
+        pVictory = new VictoryFrame(game);
+
+        setBounds(500, 400, 1000, 750);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
         getContentPane().removeAll();
         getContentPane().add(pMenu);
     }

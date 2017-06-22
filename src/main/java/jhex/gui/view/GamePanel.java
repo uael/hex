@@ -18,28 +18,31 @@ import java.util.Observer;
  */
 
 public class GamePanel extends JPanel implements Observer {
-    public JButton bMenu = new JButton("Menu");
-    private JLabel currentPlayer = new JLabel("Empty");
     private Grid grid;
     private Game game;
+
+    private JButton bMenu = new JButton("Menu");
+    private JLabel currentPlayer = new JLabel("");
 
     GamePanel(Game game) {
         super();
         this.game = game;
         game.addObserver(this);
         this.grid = new Grid(game.board.size);
+
         currentPlayer.setFont(new Font(currentPlayer.getFont().getName(), Font.PLAIN, 50));
         add(currentPlayer);
+
         bMenu.setSize(125, 100);
-        add(bMenu);
         bMenu.addActionListener(this::onMenuClick);
+        add(bMenu);
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.translate(70, 90);
         for (Cell c : this.grid) {
-
             Graphics2D g2 = (Graphics2D) g;
             //Cell
             g2.setColor(c.getColor());
@@ -77,9 +80,9 @@ public class GamePanel extends JPanel implements Observer {
                     }
                 case ON_TURN:
                     if (game.getCurrentColor() == 0) {
-                        currentPlayer.setText("C'est au currentPlayer du bleu!");
+                        currentPlayer.setText("Blue player turn!");
                     } else {
-                        currentPlayer.setText("C'est au currentPlayer du rouge!");
+                        currentPlayer.setText("Red player turn!");
                     }
                     break;
                 case ON_PLAY:
